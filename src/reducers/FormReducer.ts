@@ -1,22 +1,27 @@
 import { Action, FormActions } from '../actions/FormAction';
 
-type _FormState = {
+type _FormValue = {
   value: string,
   date: string
 }
+export type FormValue = Readonly<_FormValue>;
 
-export type FormState = Readonly<_FormState>;
+type _FormState = {
+  list: FormValue[]
+};
+export type FormState = Readonly<_FormState>
 
 export const initialState: FormState = {
-  value: '',
-  date: ''
+  list: []
 };
 
-export function formReducer(state: FormState | never = initialState, action: FormActions): FormState | undefined {
+export function formReducer(state: FormState | never = initialState, action: FormActions): FormState {
   switch (action.type) {
     case Action.ADD:
-      return action.payload;
+      return {
+        list: [...state.list, action.payload]
+      };
     default:
-      return;
+      return initialState;
   }
 }

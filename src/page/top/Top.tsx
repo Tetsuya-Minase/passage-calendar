@@ -8,11 +8,9 @@ export const Top = () => {
   const [state, dispatch] = useReducer(formReducer, initialState);
 
   return (
-    <FormContext.Provider value={state ?? initialState}>
+    <FormContext.Provider value={state}>
       <DispatchContext.Provider value={dispatch}>
         <InputForm  dispatchContext={DispatchContext}/>
-        <div>{state?.value}</div>
-        <div>{state?.date}</div>
       </DispatchContext.Provider>
     </FormContext.Provider>
   );
