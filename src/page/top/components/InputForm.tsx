@@ -1,10 +1,10 @@
 import React, { Context, Dispatch, useContext, useState } from 'react';
 import { add } from '../../../actions/FormAction';
 import { ButtonComponent as Button } from '../../../common/atoms/Button';
-import { Input } from '../../../common/atoms/Input';
+import { InputLabel } from '../../../common/molecules/InputLabel';
 
 type Props = {
-  dispatchContext:  Context<Dispatch<any>>
+  dispatchContext: Context<Dispatch<any>>
 }
 
 export const InputForm = (props: Props) => {
@@ -13,8 +13,8 @@ export const InputForm = (props: Props) => {
   const dispatch = useContext(props.dispatchContext);
   return (
     <>
-      <label>value: <Input types="text" change={(e) => setValue(e.target.value)} /></label>
-      <label>date: <Input types="date" change={(e) => setDate(e.target.value)} /></label>
+      <InputLabel labelText="value: " types="text" change={(e) => setValue(e.target.value)} />
+      <InputLabel labelText="date: " types="date" change={(e) => setDate(e.target.value)} />
       <Button text="登録" size="small" types="primary" click={() => dispatch(add({ value, date }))}/>
     </>
   );
