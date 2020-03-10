@@ -1,6 +1,6 @@
 import React, { Context, Dispatch, useContext, useState } from 'react';
 import { add } from '../../../actions/FormAction';
-import { ButtonComponent as Button } from '../../../common/atoms/button/Button';
+import { ButtonComponent as Button } from '../../../common/atoms/Button';
 
 type Props = {
   dispatchContext:  Context<Dispatch<any>>
