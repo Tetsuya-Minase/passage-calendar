@@ -1,7 +1,6 @@
 import React, { Dispatch, useReducer } from 'react';
 import { InputForm } from './components/InputForm';
 import { initialState, formReducer, FormState } from '../../reducers/FormReducer';
-import { differenceInDays, parseISO } from 'date-fns';
 import { Dl } from '../../common/molecules/DescriptionList';
 
 export const Top = () => {
@@ -13,9 +12,7 @@ export const Top = () => {
       <DispatchContext.Provider value={dispatch}>
         <InputForm dispatchContext={DispatchContext}/>
       </DispatchContext.Provider>
-      {state.list.length === 0 ? null : state.list.map((item, index) => (
-        <Dl key={index} value={item.value} date={item.date} />
-      ))}
+      {state.list.length === 0 ? null : <Dl items={state.list}/>}
     </FormContext.Provider>
   );
 };
