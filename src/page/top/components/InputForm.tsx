@@ -4,7 +4,7 @@ import { ButtonComponent as Button } from '../../../common/atoms/Button';
 import { InputLabel } from '../../../common/molecules/InputLabel';
 
 type Props = {
-  dispatchContext: Context<Dispatch<any>>
+  dispatchContext: Context<Dispatch<any> | undefined>
 }
 
 export const InputForm = (props: Props) => {
@@ -15,7 +15,7 @@ export const InputForm = (props: Props) => {
     <>
       <InputLabel labelText="value: " types="text" change={(e) => setValue(e.target.value)} />
       <InputLabel labelText="date: " types="date" change={(e) => setDate(e.target.value)} />
-      <Button text="登録" size="small" types="primary" click={() => dispatch(add({ value, date }))}/>
+      <Button text="登録" size="small" types="primary" click={() => dispatch ? dispatch(add({ value, date })) : undefined}/>
     </>
   );
 };

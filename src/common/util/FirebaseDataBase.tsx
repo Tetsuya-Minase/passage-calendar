@@ -1,16 +1,14 @@
 import { firebase, FirebaseContext } from './Firebase';
 import { useContext, useEffect, useMemo, useState } from 'react';
-import { database } from 'firebase-admin';
 
 const useDocRef = (path: string) => {
   const { userId } = useContext(FirebaseContext);
-  const ref = useMemo((): database.Reference => {
-    // @ts-ignore
-    return firebase.database().ref(`users/${userId}/${path}`);
+  return useMemo((): firebase.database.Reference => {
+    return firebase.database().ref(`/`);
   }, [userId, path]);
-  return ref;
+
 };
-function useFetchDocument<T>(ref: database.Reference) {
+function useFetchDocument<T>(ref: firebase.database.Reference) {
   const [document, setDocument] = useState<T>();
   const [loaded, setLoaded] = useState(false);
 

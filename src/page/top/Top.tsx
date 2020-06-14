@@ -13,8 +13,8 @@ export const Top = () => {
     return <div>loading now....</div>;
   }, []);
   const { document, loaded } = useAllDocuments();
-  const FormContext = React.createContext<FormState>(null as any);
-  const DispatchContext = React.createContext<Dispatch<any>>(null as any);
+  const FormContext = React.createContext<FormState | undefined>(undefined);
+  const DispatchContext = React.createContext<Dispatch<any> | undefined>(undefined);
   const [state, dispatch] = useReducer(formReducer, initialState);
   return (
     <>
