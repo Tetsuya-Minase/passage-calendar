@@ -2,15 +2,17 @@ import React, { Dispatch, useReducer } from 'react';
 import { InputForm } from './components/InputForm';
 import { initialState, formReducer, FormState } from '../../reducers/FormReducer';
 import { Dl } from '../../common/molecules/DescriptionList';
-import { FirebaseAuth, signInWithRedirect, signOut } from '../../common/js/FirebaseAuth';
+import { FirebaseAuth, signInWithRedirect, signOut } from '../../common/util/FirebaseAuth';
+import { useAllDocuments } from '../../common/util/FirebaseDataBase';
 
 export const Top = () => {
   const NotSignedIn = React.useCallback(() => {
-    return <button onClick={() => signInWithRedirect()}>signIn</button>;
+    return <button onClick={() => signInWithRedirect()}>サインイン</button>;
   }, []);
   const Loading = React.useCallback(() => {
     return <div>loading now....</div>;
   }, []);
+  const { document, loaded } = useAllDocuments();
   const FormContext = React.createContext<FormState>(null as any);
   const DispatchContext = React.createContext<Dispatch<any>>(null as any);
   const [state, dispatch] = useReducer(formReducer, initialState);

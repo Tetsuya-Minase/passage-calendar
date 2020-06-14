@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { firebase, FirebaseContext } from './Firebase';
 
 const useFirebaseAuth = () => {
-  console.log('auth: ', firebase);
   const [initialized, setInitialized] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
   const [userName, setUserName] = useState('');
@@ -31,7 +30,6 @@ export const FirebaseAuth: React.FC<FirebaseAuthProps> = (
   }
 ) => {
   const { initialized, userId, userName } = useFirebaseAuth();
-
   if (!initialized) {
     return <Loading/>;
   } else if (!userId) {
