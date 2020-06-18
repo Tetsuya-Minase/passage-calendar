@@ -1,10 +1,11 @@
 import { firebase, FirebaseContext } from './Firebase';
 import { useContext, useEffect, useMemo, useState } from 'react';
+import { log } from 'util';
 
 const useDocRef = (path: string) => {
   const { userId } = useContext(FirebaseContext);
   return useMemo((): firebase.database.Reference => {
-    return firebase.database().ref(`/`);
+    return firebase.database().ref(`/${userId}`);
   }, [userId, path]);
 
 };

@@ -3,6 +3,7 @@ import Calendar from 'react-calendar';
 import styled from 'styled-components';
 import 'react-calendar/dist/Calendar.css';
 import './Calendar.css';
+import { useAllDocuments } from '../util/FirebaseDataBase';
 
 const CalendarWrapper = styled.div`
   align-items: center;
@@ -11,12 +12,9 @@ const CalendarWrapper = styled.div`
   width: 100%;
 `;
 
-type IProps = {
-  [key: string]: Document;
-}
-
-export const CalendarComponent: React.FC<IProps> = (props) => {
-  const calendarValue = Object.values(props);
+export const CalendarComponent: React.FC = () => {
+  const { document } = useAllDocuments();
+  const calendarValue = Object.values(document || {});
   const tileContent = Object.fromEntries(calendarValue.map((c: any) => [new Date(c.date).toString(), c.value]));
   const tileValue = useCallback(({ date }) => {
     const dateKey = date.toString();
