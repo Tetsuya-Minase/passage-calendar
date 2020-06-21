@@ -1,12 +1,13 @@
 import { firebase, FirebaseContext } from './Firebase';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { log } from 'util';
+import { FormValue } from '../context/FormStateContext';
 
-const useDocRef = (path: string) => {
+const useDocRef = () => {
   const { userId } = useContext(FirebaseContext);
   return useMemo((): firebase.database.Reference => {
     return firebase.database().ref(`/${userId}`);
-  }, [userId, path]);
+  }, [userId]);
 
 };
 function useFetchDocument<T>(ref: firebase.database.Reference) {
@@ -34,6 +35,6 @@ function useFetchDocument<T>(ref: firebase.database.Reference) {
 }
 
 export const useAllDocuments = () => {
-  const ref = useDocRef('documents');
-  return useFetchDocument<{ [key: string]: Document }>(ref);
+  const ref = useDocRef();
+  return useFetchDocument<{ [key: string]: FormValue }>(ref);
 };

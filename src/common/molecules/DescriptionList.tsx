@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { differenceInDays, parseISO } from 'date-fns';
-import { FormValue } from '../../reducers/FormReducer';
+import { FormValue } from '../context/FormStateContext';
 
 type DescriptionListProps = {
   items: FormValue[]
@@ -23,11 +23,11 @@ export const Dl: React.FC<DescriptionListProps> = props => (
       <_DescriptionTerm>登録日</_DescriptionTerm>
       <_DescriptionTerm>経過日数</_DescriptionTerm>
     </_DescriptionList>
-    {props.items.map((item, index) => (
-      <_DescriptionList key={index}>
-        <_Description>{item.value}</_Description>
-        <_Description>{item.date}</_Description>
-        <_Description>{calculatePassage(item.date)}</_Description>
+    {props.items.map(({value, date}) => (
+      <_DescriptionList key={`${value}:${date}`}>
+        <_Description>{value}</_Description>
+        <_Description>{date}</_Description>
+        <_Description>{calculatePassage(date)}</_Description>
       </_DescriptionList>
     ))}
   </>
