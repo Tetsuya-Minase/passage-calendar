@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import 'react-calendar/dist/Calendar.css';
 import './Calendar.css';
 import { useAllDocuments } from '../util/FirebaseDataBase';
-import { FormStateContext, SetFormStateContext } from '../context/FormStateContext';
+import { FormState, useFormStateContext, useSetFormStateContext } from '../context/FormStateContext';
 
 const CalendarWrapper = styled.div`
   align-items: center;
@@ -15,15 +15,11 @@ const CalendarWrapper = styled.div`
 
 export const CalendarComponent: React.FC = () => {
   const { document } = useAllDocuments();
-  const formState = useContext(FormStateContext);
-  const setFormState = useContext(SetFormStateContext);
-  console.log(setFormState);
+  const formState = useFormStateContext();
+  const setFormState = useSetFormStateContext();
   const calendarValue = Object.values(document || {});
-  console.log('formState.list:', formState.list);
-  console.log('calendarValue: ', calendarValue);
   useEffect(() => {
-    const initialFormState = { list: [...formState.list, ...calendarValue] };
-    console.log('initialFormState', initialFormState);
+    const initialFormState: FormState = { list: [...formState.list, ...calendarValue] };
     setFormState(initialFormState);
   }, [formState.list, calendarValue]);
   const tileContent = Object.fromEntries(calendarValue.map(({ date, value }) => [new Date(date).toString(), value]));

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { createContext, Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { InputForm } from './components/InputForm';
 import { Dl } from '../../common/molecules/DescriptionList';
 import { FirebaseAuth, signInWithRedirect, signOut } from '../../common/util/FirebaseAuth';
@@ -13,16 +13,15 @@ export const Top = () => {
     return <div>loading now....</div>;
   }, []);
   const [formState, setFormState] = useState(initialState);
-  console.log('formState in Top: ', formState);
   return (
     <FirebaseAuth NotSignedIn={NotSignedIn} Loading={Loading}>
       <button onClick={signOut}>sign out</button>
       <FormStateContext.Provider value={formState}>
         <SetFormStateContext.Provider value={setFormState}>
           <InputForm/>
-          {!formState.list.length ? null : <Dl items={formState.list}/>}
+          <Dl/>
+          <CalendarComponent/>
         </SetFormStateContext.Provider>
-        <CalendarComponent/>
       </FormStateContext.Provider>
     </FirebaseAuth>
   );
