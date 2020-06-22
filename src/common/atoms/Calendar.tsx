@@ -1,9 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useRef } from 'react';
 import Calendar from 'react-calendar';
 import styled from 'styled-components';
 import 'react-calendar/dist/Calendar.css';
 import './Calendar.css';
 import { useAllDocuments } from '../util/FirebaseDataBase';
+import { FormState, useFormStateContext, useSetFormStateContext } from '../context/FormStateContext';
 
 const CalendarWrapper = styled.div`
   align-items: center;
@@ -14,10 +15,18 @@ const CalendarWrapper = styled.div`
 
 export const CalendarComponent: React.FC = () => {
   const { document } = useAllDocuments();
-  const calendarValue = Object.values(document || {});
-  const tileContent = Object.fromEntries(calendarValue.map((c: any) => [new Date(c.date).toString(), c.value]));
+  const formState = useFormStateContext();
+  const setFormState = useSetFormStateContext();
+  const documentValues = useMemo(() => {
+    return Object.values(document || {});
+  }, [document]);
+  useEffect(() => {
+    const initialFormState: FormState = { list: [...formState.list, ...documentValues] };
+    setFormState(initialFormState);
+  }, [documentValues]);
+  const tileContent = Object.fromEntries(formState.list.map(({ date, value }) => [new Date(date).toDateString(), value]));
   const tileValue = useCallback(({ date }) => {
-    const dateKey = date.toString();
+    const dateKey = date.toDateString();
     return tileContent[dateKey] ? <p>{tileContent[dateKey]}</p> : null;
   }, [tileContent]);
   return <CalendarWrapper><Calendar tileContent={tileValue} locale="ja-JP"/></CalendarWrapper>;

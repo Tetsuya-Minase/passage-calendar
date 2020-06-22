@@ -1,9 +1,9 @@
-import React, { Dispatch, useReducer, createContext, useCallback } from 'react';
+import React, { createContext, Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { InputForm } from './components/InputForm';
-import { initialState, formReducer, FormState } from '../../reducers/FormReducer';
 import { Dl } from '../../common/molecules/DescriptionList';
 import { FirebaseAuth, signInWithRedirect, signOut } from '../../common/util/FirebaseAuth';
 import { CalendarComponent } from '../../common/atoms/Calendar';
+import { FormStateContext, SetFormStateContext, initialState } from '../../common/context/FormStateContext';
 
 export const Top = () => {
   const NotSignedIn = useCallback(() => {
@@ -12,21 +12,17 @@ export const Top = () => {
   const Loading = useCallback(() => {
     return <div>loading now....</div>;
   }, []);
-  const FormContext = createContext<FormState | undefined>(undefined);
-  const DispatchContext = createContext<Dispatch<any> | undefined>(undefined);
-  const [state, dispatch] = useReducer(formReducer, initialState);
+  const [formState, setFormState] = useState(initialState);
   return (
-    <>
-      <FirebaseAuth NotSignedIn={NotSignedIn} Loading={Loading}>
-        <button onClick={signOut}>sign out</button>
-        <FormContext.Provider value={state}>
-          <DispatchContext.Provider value={dispatch}>
-            <InputForm dispatchContext={DispatchContext}/>
-          </DispatchContext.Provider>
-          {state.list.length === 0 ? null : <Dl items={state.list}/>}
-        </FormContext.Provider>
-        <CalendarComponent />
-      </FirebaseAuth>
-    </>
+    <FirebaseAuth NotSignedIn={NotSignedIn} Loading={Loading}>
+      <button onClick={signOut}>sign out</button>
+      <FormStateContext.Provider value={formState}>
+        <SetFormStateContext.Provider value={setFormState}>
+          <InputForm/>
+          <Dl/>
+          <CalendarComponent/>
+        </SetFormStateContext.Provider>
+      </FormStateContext.Provider>
+    </FirebaseAuth>
   );
 };
