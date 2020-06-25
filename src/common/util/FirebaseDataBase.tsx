@@ -1,7 +1,6 @@
 import { firebase, FirebaseContext } from './Firebase';
-import { useContext, useEffect, useMemo, useState } from 'react';
-import { log } from 'util';
-import { FormValue } from '../context/FormStateContext';
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { FormState, FormValue } from '../context/FormStateContext';
 
 const useDocRef = () => {
   const { userId } = useContext(FirebaseContext);
@@ -37,4 +36,53 @@ function useFetchDocument<T>(ref: firebase.database.Reference) {
 export const useAllDocuments = () => {
   const ref = useDocRef();
   return useFetchDocument<{ [key: string]: FormValue }>(ref);
+};
+
+function useUpdateDocument<T = any>(ref: firebase.database.Reference) {
+  const [pending, setPending] = useState(false);
+  const timerRef = useRef<any>(undefined);
+  const mountedRef = useRef<boolean>(false);
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
+  const updateDocument = useCallback(
+    (document: T) => {
+      if (timerRef.current !== undefined) {
+        clearTimeout(timerRef.current);
+      }
+
+      timerRef.current = setTimeout(() => {
+        if (!mountedRef.current) {
+          return;
+        }
+        setPending(true);
+        ref.set(document).then(() => {
+          setPending(false);
+        });
+        timerRef.current = undefined;
+      }, 500);
+    },
+    [ref]
+  );
+
+  return { pending, updateDocument };
+}
+export const useDatabaseDocument = () => {
+  const ref = useDocRef();
+  const { updateDocument, pending } = useUpdateDocument<{ [key: string]: FormValue }>(ref);
+  const updateFormValue = useCallback(
+    (registerData: FormState) => {
+      const registerObject = registerData.list.reduce((result: {[key: string]: FormValue}, current, index) => {
+        return {...result, ...{[index.toString()]: current}}
+      }, {});
+      updateDocument(registerObject);
+    },
+    [updateDocument]
+  );
+
+  return { pending, updateFormValue };
 };
