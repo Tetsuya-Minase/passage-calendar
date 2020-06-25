@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { differenceInDays, parseISO } from 'date-fns';
 import { useFormStateContext } from '../context/FormStateContext';
