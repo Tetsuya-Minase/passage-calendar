@@ -17,21 +17,21 @@ const getSize = (size: ButtonProps['size']) => {
   switch (size) {
     case 'small':
       return css`
-        width: 72px;
-        height: 30px;
-        font-size: 10px;
+        width: 7.2rem;
+        height: 3rem;
+        font-size: 1rem;
       `;
     case 'large':
       return css`
-        width: 300px;
-        height: 100px;
-        font-size: 24px;
+        width: 30rem;
+        height: 10rem;
+        font-size: 2.4rem;
       `;
     default:
       return css`
-        width: 150px;
-        height: 50px;
-        font-size: 16px;
+        width: 15rem;
+        height: 5rem;
+        font-size: 1.6rem;
       `;
   }
 };
