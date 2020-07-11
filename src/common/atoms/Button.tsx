@@ -8,7 +8,7 @@ type ButtonProps = {
   types?: 'primary' | 'error' | 'warning'
 };
 
-const Button = styled.button<Pick<ButtonProps, 'types' | 'size'>>`
+const _Button = styled.button<Pick<ButtonProps, 'types' | 'size'>>`
   ${({size}) => getSize(size)}
   ${({types}) => getColor(types)}
 `;
@@ -53,4 +53,4 @@ const getColor = (type?: ButtonProps['types']) => {
   }
 };
 
-export const ButtonComponent = (props: ButtonProps) => <Button size={props.size} types={props.types} onClick={props.click}>{props.text}</Button>;
+export const Button = (props: ButtonProps) => <_Button size={props.size} types={props.types} onClick={props.click}>{props.text}</_Button>;

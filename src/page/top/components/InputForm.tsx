@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { ButtonComponent as Button } from '../../../common/atoms/Button';
+import { Button } from '../../../common/atoms/Button';
 import { InputLabel } from '../../../common/molecules/InputLabel';
 import {
   useFormStateContext,
