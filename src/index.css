@@ -52,3 +52,8 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+html {
+  /* 1rem = 10px */
+  font-size: 62.5%;
+}
