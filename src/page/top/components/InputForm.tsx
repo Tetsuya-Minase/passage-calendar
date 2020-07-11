@@ -17,13 +17,13 @@ export const InputForm: React.FC = () => {
   }, [formState, value, date]);
   const { updateFormValue } = useDatabaseDocument();
   return (
-    <>
+    <div>
       <InputLabel labelText="value: " types="text" change={(e) => setValue(e.target.value)} />
       <InputLabel labelText="date: " types="date" change={(e) => setDate(e.target.value)} />
       <Button text="登録" size="small" types="primary" click={() => {
         setFormState({ list: updateFormState() });
         updateFormValue({list: updateFormState()});
       }}/>
-    </>
+    </div>
   );
 };
