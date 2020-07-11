@@ -1,5 +1,5 @@
 import React from 'react';
-import { Label } from '../atoms/Label';
+import { Label, LabelProps } from '../atoms/Label';
 import { InputProps, Input } from '../atoms/Input';
 
 type InputLabelProps = {
@@ -7,7 +7,8 @@ type InputLabelProps = {
   types: InputProps['types'],
   initialValue?: string,
   placeHolder?: string,
-  change?: InputProps['change']
+  change?: InputProps['change'],
+  isBlock?: LabelProps['isBlock']
 }
 
 export const InputLabel = (props: InputLabelProps) => (
