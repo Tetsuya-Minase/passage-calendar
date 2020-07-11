@@ -19,7 +19,7 @@ const getSize = (size: ButtonProps['size']) => {
       return css`
         width: 7.2rem;
         height: 3rem;
-        font-size: 1rem;
+        font-size: 1.6rem;
       `;
     case 'large':
       return css`

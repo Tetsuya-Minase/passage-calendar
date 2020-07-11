@@ -4,6 +4,7 @@ import { differenceInDays, parseISO } from 'date-fns';
 import { useFormStateContext } from '../context/FormStateContext';
 
 const _DescriptionList = styled.dl`
+  font-size: 1.6rem;
   display: flex;
 `;
 const _DescriptionTerm = styled.dt``;
