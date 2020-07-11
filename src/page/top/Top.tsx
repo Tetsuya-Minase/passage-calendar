@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { InputForm } from './components/InputForm';
 import { Dl } from '../../common/molecules/DescriptionList';
 import { FirebaseAuth, signInWithRedirect, signOut } from '../../common/util/FirebaseAuth';
-import { CalendarComponent } from '../../common/atoms/Calendar';
+import { CalendarComponent } from '../../common/atoms/calendar/Calendar';
 import { FormStateContext, SetFormStateContext, initialState } from '../../common/context/FormStateContext';
 import { Button } from '../../common/atoms/Button';
 
