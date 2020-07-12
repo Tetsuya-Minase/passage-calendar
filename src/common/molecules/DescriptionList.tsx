@@ -3,6 +3,14 @@ import styled from 'styled-components';
 import { differenceInDays, parseISO } from 'date-fns';
 import { useFormStateContext } from '../context/FormStateContext';
 
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  margin: 1rem 0;
+`;
+
 const DescriptionList = styled.dl`
   font-size: 1.6rem;
   display: flex;
@@ -23,19 +31,21 @@ const calculatePassage = (date: string) => `${differenceInDays(new Date(), parse
 export const Dl: React.FC = () => {
   const items = useFormStateContext();
   return (
-    <>
-      <DescriptionList>
-        <DescriptionTerm>内容</DescriptionTerm>
-        <DescriptionTerm>登録日</DescriptionTerm>
-        <DescriptionTerm>経過日数</DescriptionTerm>
-      </DescriptionList>
-      {items.list.map(({ value, date }) => (
-        <DescriptionList key={`${value}:${date}`}>
-          <Description>{value}</Description>
-          <Description>{date}</Description>
-          <Description>{calculatePassage(date)}</Description>
+    <Wrapper>
+      <div>
+        <DescriptionList>
+          <DescriptionTerm>内容</DescriptionTerm>
+          <DescriptionTerm>登録日</DescriptionTerm>
+          <DescriptionTerm>経過日数</DescriptionTerm>
         </DescriptionList>
-      ))}
-    </>
+        {items.list.map(({ value, date }) => (
+          <DescriptionList key={`${value}:${date}`}>
+            <Description>{value}</Description>
+            <Description>{date}</Description>
+            <Description>{calculatePassage(date)}</Description>
+          </DescriptionList>
+        ))}
+      </div>
+    </Wrapper>
   );
 };
