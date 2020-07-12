@@ -6,11 +6,18 @@ import { useFormStateContext } from '../context/FormStateContext';
 const _DescriptionList = styled.dl`
   font-size: 1.6rem;
   display: flex;
+  justify-content: space-between;
+  text-align: center;
+  width: 60rem;
 `;
-const _DescriptionTerm = styled.dt``;
-const _Description = styled.dd``;
+const _DescriptionTerm = styled.dt`
+  border-bottom: 1px solid #333;
+  min-width: 20rem;
+`;
+const _Description = styled.dd`
+  min-width: 20rem;
+`;
 
-// TODO: 日付処理はどこかに移動
 const calculatePassage = (date: string) => `${differenceInDays(new Date(), parseISO(date))}日`;
 
 export const Dl: React.FC = () => {
