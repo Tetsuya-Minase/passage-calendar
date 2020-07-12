@@ -7,8 +7,7 @@ type InputLabelProps = {
   types: InputProps['types'],
   initialValue?: string,
   placeHolder?: string,
-  change?: InputProps['change'],
-  isBlock?: LabelProps['isBlock']
+  change?: InputProps['change']
 }
 
 export const InputLabel = (props: InputLabelProps) => (
