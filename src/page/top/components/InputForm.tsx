@@ -18,8 +18,8 @@ export const InputForm: React.FC = () => {
   const { updateFormValue } = useDatabaseDocument();
   return (
     <div>
-      <InputLabel labelText="value: " types="text" change={(e) => setValue(e.target.value)}/>
-      <InputLabel labelText="date: " types="date" change={(e) => setDate(e.target.value)}/>
+      <InputLabel labelText="内容: " types="text" change={(e) => setValue(e.target.value)}/>
+      <InputLabel labelText="登録日: " types="date" change={(e) => setDate(e.target.value)}/>
       <Button text="登録" size="small" types="primary" click={() => {
         setFormState({ list: updateFormState() });
         updateFormValue({list: updateFormState()});
