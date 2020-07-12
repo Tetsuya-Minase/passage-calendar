@@ -8,6 +8,8 @@ export type InputProps = {
   change?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const _Input = styled.input``;
+const _Input = styled.input`
+  width: 15rem;
+`;
 
 export const Input = (props: InputProps) => <_Input type={props.types} onChange={props.change}/>;
