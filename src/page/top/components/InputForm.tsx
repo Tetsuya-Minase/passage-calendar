@@ -1,11 +1,17 @@
-import React, { useCallback, useContext, useState } from 'react';
-import { ButtonComponent as Button } from '../../../common/atoms/Button';
+import React, { useCallback, useState } from 'react';
+import { Button } from '../../../common/atoms/Button';
 import { InputLabel } from '../../../common/molecules/InputLabel';
 import {
   useFormStateContext,
   useSetFormStateContext
 } from '../../../common/context/FormStateContext';
 import { useDatabaseDocument } from '../../../common/util/FirebaseDataBase';
+import styled from 'styled-components';
+import { Heading } from '../../../common/atoms/Heading';
+
+const Wrapper = styled.section`
+  margin-top: 1rem;
+`;
 
 export const InputForm: React.FC = () => {
   const [value, setValue] = useState('');
@@ -17,13 +23,14 @@ export const InputForm: React.FC = () => {
   }, [formState, value, date]);
   const { updateFormValue } = useDatabaseDocument();
   return (
-    <>
-      <InputLabel labelText="value: " types="text" change={(e) => setValue(e.target.value)} />
-      <InputLabel labelText="date: " types="date" change={(e) => setDate(e.target.value)} />
-      <Button text="登録" size="small" types="primary" click={() => {
+    <Wrapper>
+      <Heading text="登録フォーム" level={1} position="left" />
+      <InputLabel labelText="内容: " types="text" change={(e) => setValue(e.target.value)}/>
+      <InputLabel labelText="登録日: " types="date" change={(e) => setDate(e.target.value)}/>
+      <Button text="登録" size="small" types="primary" position="bottom" click={() => {
         setFormState({ list: updateFormState() });
         updateFormValue({list: updateFormState()});
       }}/>
-    </>
+    </Wrapper>
   );
 };
