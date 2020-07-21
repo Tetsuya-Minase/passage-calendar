@@ -1,5 +1,5 @@
 import React from 'react';
-import { Label, LabelProps } from '../atoms/Label';
+import { Label } from '../atoms/Label';
 import { InputProps, Input } from '../atoms/Input';
 
 type InputLabelProps = {

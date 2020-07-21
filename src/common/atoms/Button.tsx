@@ -5,12 +5,14 @@ type ButtonProps = {
   text: string,
   click?: (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
   size?: 'small' | 'large',
-  types?: 'primary' | 'error' | 'warning'
+  types?: 'primary' | 'error' | 'warning',
+  position?: 'bottom' | 'right'
 };
 
-const _Button = styled.button<Pick<ButtonProps, 'types' | 'size'>>`
-  ${({size}) => getSize(size)}
-  ${({types}) => getColor(types)}
+const _Button = styled.button<Pick<ButtonProps, 'types' | 'size' | 'position'>>`
+  ${({ size }) => getSize(size)}
+  ${({ types }) => getColor(types)}
+  ${({ position }) => getPosition(position)}
 `;
 
 const getSize = (size: ButtonProps['size']) => {
@@ -36,7 +38,7 @@ const getSize = (size: ButtonProps['size']) => {
   }
 };
 const getColor = (type?: ButtonProps['types']) => {
-  switch(type) {
+  switch (type) {
     case 'primary':
       return css`
         background-color: #007bff;
@@ -52,5 +54,18 @@ const getColor = (type?: ButtonProps['types']) => {
       `;
   }
 };
+const getPosition = (position?: ButtonProps['position']) => {
+  switch (position) {
+    case 'bottom':
+      return css`
+        margin-top: 0.5rem;
+      `;
+    case 'right':
+      return css`
+        margin-left: 0.5rem;
+      `;
+  }
+};
 
-export const Button = (props: ButtonProps) => <_Button size={props.size} types={props.types} onClick={props.click}>{props.text}</_Button>;
+export const Button = (props: ButtonProps) => <_Button size={props.size} types={props.types} position={props.position}
+                                                       onClick={props.click}>{props.text}</_Button>;

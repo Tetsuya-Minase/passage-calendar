@@ -6,6 +6,11 @@ import {
   useSetFormStateContext
 } from '../../../common/context/FormStateContext';
 import { useDatabaseDocument } from '../../../common/util/FirebaseDataBase';
+import styled from 'styled-components';
+
+const Wrapper = styled.section`
+  margin-top: 1rem;
+`;
 
 export const InputForm: React.FC = () => {
   const [value, setValue] = useState('');
@@ -17,13 +22,13 @@ export const InputForm: React.FC = () => {
   }, [formState, value, date]);
   const { updateFormValue } = useDatabaseDocument();
   return (
-    <div>
+    <Wrapper>
       <InputLabel labelText="内容: " types="text" change={(e) => setValue(e.target.value)}/>
       <InputLabel labelText="登録日: " types="date" change={(e) => setDate(e.target.value)}/>
-      <Button text="登録" size="small" types="primary" click={() => {
+      <Button text="登録" size="small" types="primary" position="bottom" click={() => {
         setFormState({ list: updateFormState() });
         updateFormValue({list: updateFormState()});
       }}/>
-    </div>
+    </Wrapper>
   );
 };

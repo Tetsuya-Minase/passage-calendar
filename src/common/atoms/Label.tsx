@@ -12,6 +12,7 @@ const _Label = styled.label`
   display: flex;
   justify-content: space-between;
   width: 22rem;
+  margin-top: 0.5rem;
 `;
 
 export const Label = (props: LabelProps) => <_Label>{props.text}{props.input ?? null}</_Label>
