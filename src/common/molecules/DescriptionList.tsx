@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { differenceInDays, parseISO } from 'date-fns';
 import { useFormStateContext } from '../context/FormStateContext';
+import { Heading } from '../atoms/Heading';
 
 const Wrapper = styled.div`
   display: flex;
@@ -31,21 +32,24 @@ const calculatePassage = (date: string) => `${differenceInDays(new Date(), parse
 export const Dl: React.FC = () => {
   const items = useFormStateContext();
   return (
-    <Wrapper>
-      <div>
-        <DescriptionList>
-          <DescriptionTerm>内容</DescriptionTerm>
-          <DescriptionTerm>登録日</DescriptionTerm>
-          <DescriptionTerm>経過日数</DescriptionTerm>
-        </DescriptionList>
-        {items.list.map(({ value, date }) => (
-          <DescriptionList key={`${value}:${date}`}>
-            <Description>{value}</Description>
-            <Description>{date}</Description>
-            <Description>{calculatePassage(date)}</Description>
+    <section>
+      <Heading text="登録データ" level={1} position="center" />
+      <Wrapper>
+        <div>
+          <DescriptionList>
+            <DescriptionTerm>内容</DescriptionTerm>
+            <DescriptionTerm>登録日</DescriptionTerm>
+            <DescriptionTerm>経過日数</DescriptionTerm>
           </DescriptionList>
-        ))}
-      </div>
-    </Wrapper>
+          {items.list.map(({ value, date }) => (
+            <DescriptionList key={`${value}:${date}`}>
+              <Description>{value}</Description>
+              <Description>{date}</Description>
+              <Description>{calculatePassage(date)}</Description>
+            </DescriptionList>
+          ))}
+        </div>
+      </Wrapper>
+    </section>
   );
 };
