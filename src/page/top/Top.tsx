@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { InputForm } from './components/InputForm';
-import { Dl } from '../../common/molecules/DescriptionList';
+import { Dl } from '../../common/molecules/descriptionList/DescriptionList';
 import { FirebaseAuth, signInWithRedirect, signOut } from '../../common/util/FirebaseAuth';
 import { CalendarComponent } from '../../common/molecules/calendar/Calendar';
 import { FormStateContext, SetFormStateContext, initialState } from '../../common/context/FormStateContext';
