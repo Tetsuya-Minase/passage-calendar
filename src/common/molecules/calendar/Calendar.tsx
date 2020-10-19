@@ -5,7 +5,7 @@ import 'react-calendar/dist/Calendar.css';
 import './Calendar.css';
 import { useAllDocuments } from '../../util/FirebaseDataBase';
 import { FormState, FormValue, useFormStateContext, useSetFormStateContext } from '../../context/FormStateContext';
-import { Heading } from '../Heading';
+import { Heading } from '../../atoms/Heading';
 
 const CalendarWrapper = styled.div`
   align-items: center;
