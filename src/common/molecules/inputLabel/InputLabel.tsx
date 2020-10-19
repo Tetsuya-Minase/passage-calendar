@@ -1,14 +1,9 @@
 import React from 'react';
-import { Label } from '../atoms/Label';
-import { InputProps, Input } from '../atoms/Input';
+import { Label } from '../../atoms/label/Label';
+import { Input } from '../../atoms/input/Input';
+import { InputLabelProps } from './InputLabelTypes';
 
-type InputLabelProps = {
-  labelText: string,
-  types: InputProps['types'],
-  initialValue?: string,
-  placeHolder?: string,
-  change?: InputProps['change']
-}
+
 
 export const InputLabel = (props: InputLabelProps) => (
   <Label text={props.labelText}

@@ -1,13 +1,13 @@
 import React, { useCallback, useState } from 'react';
-import { Button } from '../../../common/atoms/Button';
-import { InputLabel } from '../../../common/molecules/InputLabel';
+import { Button } from '../../../common/atoms/button/Button';
+import { InputLabel } from '../../../common/molecules/inputLabel/InputLabel';
 import {
   useFormStateContext,
   useSetFormStateContext
 } from '../../../common/context/FormStateContext';
 import { useDatabaseDocument } from '../../../common/util/FirebaseDataBase';
 import styled from 'styled-components';
-import { Heading } from '../../../common/atoms/Heading';
+import { Heading } from '../../../common/atoms/heading/Heading';
 
 const Wrapper = styled.section`
   margin-top: 1rem;

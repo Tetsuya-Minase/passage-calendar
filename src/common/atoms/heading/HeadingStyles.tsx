@@ -1,11 +1,6 @@
-import React from 'react';
 import styled, { css } from 'styled-components';
-
-type HeadingProps = {
-  text: string;
-  level: number;
-  position: 'left' | 'center' | 'right'
-}
+import { HeadingProps } from './HeadingTypes';
+import React from 'react';
 
 const Level1 = styled.h1<Pick<HeadingProps, 'position'>>`
   font-size: 2.4rem;
@@ -30,7 +25,7 @@ const getPosition = (position: HeadingProps['position']) => {
   }
 }
 
-const getHeading = (text: string, level: number, position: HeadingProps['position']): JSX.Element | null => {
+export const getHeading = (text: string, level: number, position: HeadingProps['position']): JSX.Element | null => {
   switch(level) {
     case 1:
       return <Level1 position={position}>{text}</Level1>;
@@ -42,5 +37,3 @@ const getHeading = (text: string, level: number, position: HeadingProps['positio
       return null;
   }
 }
-
-export const Heading = (props: HeadingProps) => getHeading(props.text, props.level, props.position);

@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import { InputForm } from './components/InputForm';
-import { Dl } from '../../common/molecules/DescriptionList';
+import { Dl } from '../../common/molecules/descriptionList/DescriptionList';
 import { FirebaseAuth, signInWithRedirect, signOut } from '../../common/util/FirebaseAuth';
-import { CalendarComponent } from '../../common/atoms/calendar/Calendar';
+import { CalendarComponent } from '../../common/molecules/calendar/Calendar';
 import { FormStateContext, SetFormStateContext, initialState } from '../../common/context/FormStateContext';
-import { Button } from '../../common/atoms/Button';
+import { Button } from '../../common/atoms/button/Button';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`

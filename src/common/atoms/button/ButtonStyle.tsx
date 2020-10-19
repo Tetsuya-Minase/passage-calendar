@@ -1,15 +1,7 @@
-import React from 'react';
 import styled, { css } from 'styled-components';
+import { ButtonProps } from './ButtonTypes';
 
-type ButtonProps = {
-  text: string,
-  click?: (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void,
-  size?: 'small' | 'large',
-  types?: 'primary' | 'error' | 'warning',
-  position?: 'bottom' | 'right'
-};
-
-const _Button = styled.button<Pick<ButtonProps, 'types' | 'size' | 'position'>>`
+export const _Button = styled.button<Pick<ButtonProps, 'types' | 'size' | 'position'>>`
   ${({ size }) => getSize(size)}
   ${({ types }) => getColor(types)}
   ${({ position }) => getPosition(position)}
@@ -66,6 +58,3 @@ const getPosition = (position?: ButtonProps['position']) => {
       `;
   }
 };
-
-export const Button = (props: ButtonProps) => <_Button size={props.size} types={props.types} position={props.position}
-                                                       onClick={props.click}>{props.text}</_Button>;
