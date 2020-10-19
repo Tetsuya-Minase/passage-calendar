@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { Button } from '../../../common/atoms/button/Button';
-import { InputLabel } from '../../../common/molecules/InputLabel';
+import { InputLabel } from '../../../common/molecules/inputLabel/InputLabel';
 import {
   useFormStateContext,
   useSetFormStateContext
