@@ -1,6 +1,7 @@
 import React from 'react';
-import { Label } from '../atoms/Label';
-import { InputProps, Input } from '../atoms/Input';
+import { Label } from '../atoms/label/Label';
+import { Input } from '../atoms/input/Input';
+import { InputProps } from '../atoms/input/InputTypes';
 
 type InputLabelProps = {
   labelText: string,
