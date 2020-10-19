@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { differenceInDays, parseISO } from 'date-fns';
 import { useFormStateContext } from '../context/FormStateContext';
-import { Heading } from '../atoms/Heading';
+import { Heading } from '../atoms/heading/Heading';
 
 const Wrapper = styled.div`
   display: flex;
